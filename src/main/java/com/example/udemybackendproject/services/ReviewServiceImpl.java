@@ -30,7 +30,7 @@ public class ReviewServiceImpl implements ReviewServiceInterface {
 
         Optional<Course> Ocourse = courseRepository.findById(add_reviewRequest.getCourse_id());
 
-        if(Ocourse.isEmpty())
+        if(!Ocourse.isPresent())
             throw new RuntimeException("Course not found");
 
         Course course = Ocourse.get();

@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserServiceInterface {
 
         Optional<User> user = userRepository.findById(userId);
 
-        if(user.isEmpty())
+        if(!user.isPresent())
             throw new ResourceNotFoundException("User not found with user id "+ userId);
 
         List<Course_Response> enrolled_courses_list = this.userCourseRepo.findAllEnrolledCoursesByUserId(userId);
