@@ -3,7 +3,6 @@ package com.example.udemybackendproject.controller;
 import com.example.udemybackendproject.entities.Review;
 import com.example.udemybackendproject.model.review.Add_Review_Request;
 import com.example.udemybackendproject.model.review.Add_Review_Response;
-import com.example.udemybackendproject.model.review.Get_Review_Response;
 import com.example.udemybackendproject.services.ReviewServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
 public class ReviewController {
 
     @Autowired

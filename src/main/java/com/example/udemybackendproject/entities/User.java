@@ -1,5 +1,6 @@
 package com.example.udemybackendproject.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.ToString;
 
@@ -18,6 +19,7 @@ public class User {
     private int age;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Skill> skills;
 
 
