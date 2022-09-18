@@ -1,7 +1,6 @@
 package com.example.udemybackendproject.services;
 
 import com.example.udemybackendproject.Interface.UserServiceInterface;
-import com.example.udemybackendproject.entities.Course;
 import com.example.udemybackendproject.entities.User;
 import com.example.udemybackendproject.exceptions.ResourceNotFoundException;
 import com.example.udemybackendproject.model.course.Course_Response;

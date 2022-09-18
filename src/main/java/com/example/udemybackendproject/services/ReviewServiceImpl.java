@@ -69,12 +69,8 @@ public class ReviewServiceImpl implements ReviewServiceInterface {
     @Override
     public List<Review> getReviews(long course_id) {
 
-        System.out.println("neeraj " + course_id);
-
 //        List<Get_Review_Response> review_list = this.reviewRepository.getReviewList(course_id);
         List<Review> review_list = this.reviewRepository.getReviewList(course_id);
-
-        System.out.println(review_list);
 
         return review_list;
 
