@@ -1,6 +1,5 @@
 package com.example.udemybackendproject.controller;
 
-import com.example.udemybackendproject.entities.Course;
 import com.example.udemybackendproject.entities.User;
 import com.example.udemybackendproject.model.course.Course_Response;
 import com.example.udemybackendproject.services.UserServiceImpl;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
 public class UserController {
 
     @Autowired
@@ -47,11 +45,5 @@ public class UserController {
     @GetMapping("/get-user-courses/{id}")
     public ResponseEntity<List<Course_Response>> getUserCourse(@PathVariable(value = "id") long userId){
         return new ResponseEntity<>(userService.getUserCourse(userId), HttpStatus.OK);
-    }
-
-    @RequestMapping("/demo")
-    @ResponseBody
-    public String demoFun(){
-        return "Demo JSP";
     }
 }
