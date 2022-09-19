@@ -22,8 +22,8 @@ public class UserController {
         return new ResponseEntity<>(userService.addUser(user), HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/get-user/{id}")
-    public ResponseEntity<User> getUser(@PathVariable(value = "id") long userId){
+    @GetMapping(value = "/get-user/{user_id}")
+    public ResponseEntity<User> getUser(@PathVariable(value = "user_id") long userId){
         return new ResponseEntity<>(userService.getUserById(userId), HttpStatus.OK);
     }
 
@@ -32,18 +32,18 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @PutMapping("/update-user/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable(value = "id") long userId, @RequestBody  User user){
+    @PutMapping("/update-user/{user_id}")
+    public ResponseEntity<User> updateUser(@PathVariable(value = "user_id") long userId, @RequestBody  User user){
         return new ResponseEntity<>(userService.updateUser(user,userId), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete-user/{id}")
-    public void deleteUser(@PathVariable(value = "id") long userId){
+    @DeleteMapping("/delete-user/{user_id}")
+    public void deleteUser(@PathVariable(value = "user_id") long userId){
         userService.deleteUser(userId);
     }
 
-    @GetMapping("/get-user-courses/{id}")
-    public ResponseEntity<List<Course_Response>> getUserCourse(@PathVariable(value = "id") long userId){
+    @GetMapping("/get-user-courses/{user_id}")
+    public ResponseEntity<List<Course_Response>> getUserCourse(@PathVariable(value = "user_id") long userId){
         return new ResponseEntity<>(userService.getUserCourse(userId), HttpStatus.OK);
     }
 }

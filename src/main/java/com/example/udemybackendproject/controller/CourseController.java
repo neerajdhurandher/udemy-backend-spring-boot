@@ -31,8 +31,8 @@ public class CourseController {
         return courseService.getAllCourses();
     }
 
-    @GetMapping(value = "/get-course/{id}")
-    public ResponseEntity<Course_Response> getCourseById(@PathVariable(value = "id") long courseId){
+    @GetMapping(value = "/get-course/{course_id}")
+    public ResponseEntity<Course_Response> getCourseById(@PathVariable(value = "course_id") long courseId){
         return new ResponseEntity<>(courseService.getCourseById(courseId), HttpStatus.OK);
     }
 
@@ -43,16 +43,16 @@ public class CourseController {
 
     @PutMapping(value = "/update-course")
     public ResponseEntity<Update_Course_Response> updateCourse(@RequestBody Update_Course_Request update_course_request){
-        return new ResponseEntity<>(courseService.updateCourse(update_course_request), HttpStatus.OK);
+        return new ResponseEntity<>(courseService.updateCourse(update_course_request), HttpStatus.ACCEPTED);
     }
 
     @PutMapping(value = "/enroll-user")
     public ResponseEntity<Add_User_in_Course_RP> enrollUser(@RequestBody Add_User_in_Course_RT add_user_in_course_request){
-        return new ResponseEntity<>(courseService.enrollUser(add_user_in_course_request), HttpStatus.OK);
+        return new ResponseEntity<>(courseService.enrollUser(add_user_in_course_request), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping(value = "/get-enroll-users/{id}")
-    public ResponseEntity<List<User_Response>> getEnrolledUsers(@PathVariable(value = "id") long courseId){
+    @GetMapping(value = "/get-enroll-users/{course_id}")
+    public ResponseEntity<List<User_Response>> getEnrolledUsers(@PathVariable(value = "course_id") long courseId){
         return new ResponseEntity<>(courseService.getEnrolledUsers(courseId), HttpStatus.OK);
     }
 
