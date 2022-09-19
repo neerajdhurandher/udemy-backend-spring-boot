@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -18,9 +19,10 @@ public class User {
     private String email;
     private int age;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn(name = "user_id_fk", referencedColumnName = "user_id")
     @JsonIgnore
-    private List<Skill> skills;
+    private Set<Skill> skills;
 
 
     public User() {
