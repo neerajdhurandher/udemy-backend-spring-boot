@@ -47,9 +47,9 @@ public class UserServiceImpl implements UserServiceInterface {
     }
 
     @Override
-    public User getUserByName(String nameKeyword) {
-//        userRepo.findBy("name", getUserByName(nameKeyword));
-        return null;
+    public List<User> getUserByName(String nameKeyword) {
+        List<User> result = userRepository.findUserByNameStartingWith(nameKeyword);
+        return result;
     }
 
     @Override

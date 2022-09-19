@@ -16,17 +16,17 @@ import javax.persistence.Id;
 public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long skill_id;
-    private long user_id;
-    private String skill_title;
+    private long skillId;
+    private long userId;
+    private String skillTitle;
     private int totalExperience;
 
     public Skill() {
     }
 
-    public Skill(String skill_title, int totalExperience, long user_id) {
-        this.skill_title = skill_title;
+    public Skill(String skillTitle, int totalExperience, long userId) {
+        this.skillTitle = skillTitle;
         this.totalExperience = totalExperience;
-        this.user_id = user_id;
+        this.userId = userId;
     }
 }

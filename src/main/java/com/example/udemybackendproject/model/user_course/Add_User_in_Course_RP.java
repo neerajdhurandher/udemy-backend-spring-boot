@@ -8,15 +8,15 @@ import org.springframework.stereotype.Component;
 public class Add_User_in_Course_RP {
 
     String status;
-    long user_id;
-    long course_id;
+    long userId;
+    long courseId;
 
     public Add_User_in_Course_RP() {
     }
 
-    public Add_User_in_Course_RP(String status, long user_id, long course_id) {
+    public Add_User_in_Course_RP(String status, long userId, long courseId) {
         this.status = status;
-        this.user_id = user_id;
-        this.course_id = course_id;
+        this.userId = userId;
+        this.courseId = courseId;
     }
 }

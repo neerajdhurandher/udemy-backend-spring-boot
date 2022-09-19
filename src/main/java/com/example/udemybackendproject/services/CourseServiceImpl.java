@@ -48,7 +48,7 @@ public class CourseServiceImpl implements CourseServiceInterface {
         Optional<Course> course = courseRepository.findById(courseId);
         if(course.isPresent()) {
             Course result_course = course.get();
-            return  new Course_Response(result_course.getCourse_id(),result_course.getCourse_name(),result_course.getDomain(),result_course.getAuthor_id(),result_course.getDuration(),result_course.getRating(),result_course.getPrice());
+            return  new Course_Response(result_course.getCourseId(),result_course.getCourseName(),result_course.getDomain(),result_course.getAuthorId(),result_course.getDuration(),result_course.getRating(),result_course.getPrice());
         }
         else
             throw new RuntimeException("Course not found");
@@ -56,25 +56,23 @@ public class CourseServiceImpl implements CourseServiceInterface {
 
     @Override
     public List<Course> getCourseByName(String search_keyword) {
-//        Example<Course> example = Example.of(new Course(search_keyword));
-//        List<Course> result = courseRepository.findAll(example);
-
-        return null;
+        List<Course> result = courseRepository.findCourseByCourseNameStartingWith(search_keyword);
+        return result;
 
     }
 
     @Override
     public Update_Course_Response updateCourse(Update_Course_Request ur_course) {
 
-        Optional<Course> course_o = courseRepository.findById(ur_course.getCourse_id());
+        Optional<Course> course_o = courseRepository.findById(ur_course.getCourseId());
 
         if(course_o.isEmpty())
-            throw  new ResourceNotFoundException("UnSuccess! Course not found with course id "+ ur_course.getCourse_id());
+            throw  new ResourceNotFoundException("UnSuccess! Course not found with course id "+ ur_course.getCourseId());
 
         Course course = course_o.get();
 
-        if(ur_course.getCourse_name() != null){
-           course.setCourse_name(ur_course.getCourse_name());
+        if(ur_course.getCourseName() != null){
+           course.setCourseName(ur_course.getCourseName());
         }
         if(ur_course.getDomain() != null){
             course.setDomain(ur_course.getDomain());
@@ -88,7 +86,7 @@ public class CourseServiceImpl implements CourseServiceInterface {
 
         this.courseRepository.save(course);
 
-        return new Update_Course_Response("Success", course.getCourse_id(), course.getCourse_name(), course.getDomain(), course.getAuthor_id(), course.getDuration(), course.getPrice());
+        return new Update_Course_Response("Success", course.getCourseId(), course.getCourseName(), course.getDomain(), course.getAuthorId(), course.getDuration(), course.getPrice());
 
 
     }
@@ -102,8 +100,8 @@ public class CourseServiceImpl implements CourseServiceInterface {
     @Override
     public Add_User_in_Course_RP enrollUser(Add_User_in_Course_RT add_user_in_course_request) {
 
-        long course_id = add_user_in_course_request.getCourse_id();
-        long user_id = add_user_in_course_request.getUser_id();
+        long course_id = add_user_in_course_request.getCourseId();
+        long user_id = add_user_in_course_request.getUserId();
 
         Optional<Course> course_o = courseRepository.findById(course_id);
 

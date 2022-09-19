@@ -23,8 +23,13 @@ public class UserController {
     }
 
     @GetMapping(value = "/get-user/{user_id}")
-    public ResponseEntity<User> getUser(@PathVariable(value = "user_id") long userId){
+    public ResponseEntity<User> getUserById(@PathVariable(value = "user_id") long userId){
         return new ResponseEntity<>(userService.getUserById(userId), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/get-user")
+    public ResponseEntity<List<User>> getUserByName(@RequestParam String search_keyword){
+        return new ResponseEntity<>(userService.getUserByName(search_keyword), HttpStatus.OK);
     }
 
     @GetMapping("/get-all-users")

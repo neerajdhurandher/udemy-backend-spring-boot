@@ -7,14 +7,14 @@ import org.springframework.stereotype.Component;
 @Data
 public class Add_User_in_Course_RT {
 
-    long user_id;
-    long course_id;
+    long userId;
+    long courseId;
 
     public Add_User_in_Course_RT() {
     }
 
-    public Add_User_in_Course_RT(long user_id, long course_id) {
-        this.user_id = user_id;
-        this.course_id = course_id;
+    public Add_User_in_Course_RT(long userId, long courseId) {
+        this.userId = userId;
+        this.courseId = courseId;
     }
 }

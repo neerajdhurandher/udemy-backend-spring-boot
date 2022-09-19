@@ -10,7 +10,7 @@ public interface UserServiceInterface {
     User addUser(User user);
     List<User> getAllUsers();
     User getUserById(long id);
-    User getUserByName(String nameKeyword);
+    List<User> getUserByName(String nameKeyword);
     User updateUser(User user, long id);
     void deleteUser(long id);
 

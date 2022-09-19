@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@NamedNativeQuery(name = "Enrolled_User_in_Course.findAllEnrolledUsersByCourseId",query = " SELECT user.*,enrolled_user_in_course.course_id from (udemybackend.enrolled_user_in_course inner join udemybackend.user ON user.user_id = enrolled_user_in_course.user_id) where enrolled_user_in_course.course_id = :course_id ", resultSetMapping = "Mapping.User_Response")
+@NamedNativeQuery(name = "Enrolled_User_in_Course.findAllEnrolledUsersByCourseId",query = " SELECT user.*,enrolled_user_in_course.course_id from (udemybackend.enrolled_user_in_course inner join udemybackend.user ON user.user_id = enrolled_user_in_course.user_id) where enrolled_user_in_course.course_id = :courseId ", resultSetMapping = "Mapping.User_Response")
 
 @SqlResultSetMapping(name = "Mapping.User_Response",
         classes = @ConstructorResult(targetClass = User_Response.class,
@@ -28,11 +28,11 @@ public class Enrolled_User_in_Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long courseUserId;
-    long course_id;
-    long user_id;
+    long courseId;
+    long userId;
 
-    public Enrolled_User_in_Course(long course_id, long user_id) {
-        this.course_id = course_id;
-        this.user_id = user_id;
+    public Enrolled_User_in_Course(long courseId, long userId) {
+        this.courseId = courseId;
+        this.userId = userId;
     }
 }

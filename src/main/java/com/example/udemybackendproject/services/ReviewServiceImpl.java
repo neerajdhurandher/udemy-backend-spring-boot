@@ -34,26 +34,26 @@ public class ReviewServiceImpl implements ReviewServiceInterface {
     @Override
     public Add_Review_Response addReview(Add_Review_Request add_reviewRequest) {
 
-        Optional<Course> Ocourse = courseRepository.findById(add_reviewRequest.getCourse_id());
+        Optional<Course> Ocourse = courseRepository.findById(add_reviewRequest.getCourseId());
 
         if(Ocourse.isEmpty())
-            throw  new ResourceNotFoundException("UnSuccess! Course not found with course id "+ add_reviewRequest.getCourse_id());
+            throw  new ResourceNotFoundException("UnSuccess! Course not found with course id "+ add_reviewRequest.getCourseId());
 
-        Optional<User> user = userRepository.findById(add_reviewRequest.getUser_id());
+        Optional<User> user = userRepository.findById(add_reviewRequest.getUserId());
 
         if(user.isEmpty())
-            throw  new ResourceNotFoundException("UnSuccess! User not found with user id "+ add_reviewRequest.getUser_id());
+            throw  new ResourceNotFoundException("UnSuccess! User not found with user id "+ add_reviewRequest.getUserId());
 
         Course course = Ocourse.get();
 
-        Review review = new Review(add_reviewRequest.getCourse_id(), add_reviewRequest.getUser_id(), add_reviewRequest.getReview_description());
+        Review review = new Review(add_reviewRequest.getCourseId(), add_reviewRequest.getUserId(), add_reviewRequest.getReview_description());
 
-        course.getReview_list().add(review);
+        course.getReviewList().add(review);
 
         this.reviewRepository.save(review);
         this.courseRepository.save(course);
 
-        return new Add_Review_Response("Success",review.getReview_id(), review.getReview_description(), review.getDate_time(), review.getCourse_id(), course.getCourse_name());
+        return new Add_Review_Response("Success",review.getReviewId(), review.getReview_description(), review.getDate_time(), review.getCourseId(), course.getCourseName());
 
     }
 
