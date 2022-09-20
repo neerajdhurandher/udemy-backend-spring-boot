@@ -72,7 +72,7 @@ public class CourseServiceImpl implements CourseServiceInterface {
 
         Optional<Course> course_o = courseRepository.findById(ur_course.getCourseId());
 
-        if(course_o.isEmpty())
+        if(!course_o.isPresent())
             throw  new ResourceNotFoundException("UnSuccess! Course not found with course id "+ ur_course.getCourseId());
 
         Course course = course_o.get();
@@ -113,13 +113,13 @@ public class CourseServiceImpl implements CourseServiceInterface {
 
         Optional<Course> course_o = courseRepository.findById(course_id);
 
-        if(course_o.isEmpty())
+        if(!course_o.isPresent())
             throw  new ResourceNotFoundException("UnSuccess! Course not found with course id "+ course_id);
 
 
         Optional<User> user = userRepository.findById(user_id);
 
-        if(user.isEmpty())
+        if(!user.isPresent())
             throw  new ResourceNotFoundException("UnSuccess! User not found with user id "+ user_id);
 
         Course course = course_o.get();
@@ -133,9 +133,8 @@ public class CourseServiceImpl implements CourseServiceInterface {
     @Override
     public List<User_Response> getEnrolledUsers(long course_id) {
          Optional<Course> course = courseRepository.findById(course_id);
-        System.out.println(course.isEmpty());
 
-        if(course.isEmpty())
+        if(!course.isPresent())
             throw  new ResourceNotFoundException("UnSuccess! Course not found with course id "+ course_id);
 
 //        findAllByCourseId use native query and get user details using user id
