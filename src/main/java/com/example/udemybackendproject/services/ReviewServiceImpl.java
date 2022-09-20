@@ -36,12 +36,12 @@ public class ReviewServiceImpl implements ReviewServiceInterface {
 
         Optional<Course> Ocourse = courseRepository.findById(add_reviewRequest.getCourseId());
 
-        if(Ocourse.isEmpty())
+        if(!Ocourse.isPresent())
             throw  new ResourceNotFoundException("UnSuccess! Course not found with course id "+ add_reviewRequest.getCourseId());
 
         Optional<User> user = userRepository.findById(add_reviewRequest.getUserId());
 
-        if(user.isEmpty())
+        if(!user.isPresent())
             throw  new ResourceNotFoundException("UnSuccess! User not found with user id "+ add_reviewRequest.getUserId());
 
         Course course = Ocourse.get();
@@ -82,7 +82,7 @@ public class ReviewServiceImpl implements ReviewServiceInterface {
 
         Optional<Course> course = courseRepository.findById(course_id);
 
-        if(course.isEmpty())
+        if(!course.isPresent())
             throw  new ResourceNotFoundException("UnSuccess! Course not found with course id "+ course_id);
 
         List<Review> review_list = this.reviewRepository.getReviewList(course_id);

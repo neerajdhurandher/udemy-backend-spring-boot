@@ -31,7 +31,7 @@ public class SkillServiceImpl implements SkillServiceInterface {
 
         Optional<User> user_o = userRepository.findById(add_skill_request.getUserId());
 
-        if(user_o.isEmpty())
+        if(!user_o.isPresent())
             throw new ResourceNotFoundException("User not found with user id "+ add_skill_request.getUserId());
 
         User user = user_o.get();
@@ -51,7 +51,7 @@ public class SkillServiceImpl implements SkillServiceInterface {
     public Set<Skill> getUserSkills(long userId) {
         Optional<User> user_o = userRepository.findById(userId);
 
-        if(user_o.isEmpty())
+        if(!user_o.isPresent())
             throw new ResourceNotFoundException("User not found with user id "+ userId);
 
         User user = user_o.get();
