@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<Review, Long>{
-    @Query("SELECT r FROM Review r where r.course_id = :courseId" )
+    @Query("SELECT r FROM Review r where r.courseId = :courseId" )
     List<Review> getReviewList(@Param("courseId") long course_id);
 }

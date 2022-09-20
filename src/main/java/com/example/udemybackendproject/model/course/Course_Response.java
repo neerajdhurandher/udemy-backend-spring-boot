@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Course_Response {
 
-    private long course_id;
+    private long courseId;
     private String course_name;
     private String domain;
-    private long author_id;
+    private long authorId;
     private long duration;
     private double rating;
     private int price;

@@ -14,13 +14,13 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long user_id;
+    private long userId;
     private String name;
     private String email;
     private int age;
 
     @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-    @JoinColumn(name = "user_id_fk", referencedColumnName = "user_id")
+    @JoinColumn(name = "userIdFk", referencedColumnName = "userId")
     @JsonIgnore
     private Set<Skill> skills;
 
@@ -28,8 +28,8 @@ public class User {
     public User() {
     }
 
-    public User(long user_id, String name, String email, int age) {
-        this.user_id = user_id;
+    public User(long userId, String name, String email, int age) {
+        this.userId = userId;
         this.name = name;
         this.email = email;
         this.age = age;

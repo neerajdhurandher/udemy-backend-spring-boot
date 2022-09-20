@@ -12,10 +12,10 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 public class Update_Course_Response {
     private String message;
-    private long course_id;
-    private String course_name;
+    private long courseId;
+    private String courseName;
     private String domain;
-    private long author_id;
+    private long authorId;
     private long duration;
     private int price;
 }

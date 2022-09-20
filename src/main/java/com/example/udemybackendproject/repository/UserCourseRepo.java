@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface UserCourseRepo extends JpaRepository<Enrolled_Courses_by_User,Long> {
     @Query(nativeQuery = true)
-    List<Course_Response> findAllEnrolledCoursesByUserId(long user_id);
+    List<Course_Response> findAllEnrolledCoursesByUserId(long userId);
 }

@@ -18,7 +18,7 @@ public class ReviewController {
     private ReviewServiceImpl reviewService;
 
 
-    @PutMapping("/add-review")
+    @PostMapping("/add-review")
     public ResponseEntity<Add_Review_Response> addReview(@RequestBody Add_Review_Request add_reviewRequest){
         return new ResponseEntity<>(reviewService.addReview(add_reviewRequest), HttpStatus.CREATED);
     }
