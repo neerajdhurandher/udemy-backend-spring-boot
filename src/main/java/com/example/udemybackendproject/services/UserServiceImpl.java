@@ -49,6 +49,10 @@ public class UserServiceImpl implements UserServiceInterface {
     @Override
     public List<User> getUserByName(String nameKeyword) {
         List<User> result = userRepository.findUserByNameStartingWith(nameKeyword);
+
+        if(result.isEmpty())
+            throw  new ResourceNotFoundException("UnSuccess! User not found with keyword "+ nameKeyword);
+
         return result;
     }
 

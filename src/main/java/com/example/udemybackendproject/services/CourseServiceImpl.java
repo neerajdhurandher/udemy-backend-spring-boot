@@ -51,12 +51,16 @@ public class CourseServiceImpl implements CourseServiceInterface {
             return  new Course_Response(result_course.getCourseId(),result_course.getCourseName(),result_course.getDomain(),result_course.getAuthorId(),result_course.getDuration(),result_course.getRating(),result_course.getPrice());
         }
         else
-            throw new RuntimeException("Course not found");
+            throw  new ResourceNotFoundException("UnSuccess! Course not found with course id "+ courseId);
     }
 
     @Override
     public List<Course> getCourseByName(String search_keyword) {
         List<Course> result = courseRepository.findCourseByCourseNameStartingWith(search_keyword);
+
+        if(result.isEmpty())
+            throw  new ResourceNotFoundException("UnSuccess! Course not found with keyword "+ search_keyword);
+
         return result;
 
     }
@@ -92,8 +96,9 @@ public class CourseServiceImpl implements CourseServiceInterface {
     }
 
     @Override
-    public void deleteCourse(long id) {
-
+    public void deleteCourse(long course_id) {
+        courseRepository.findById(course_id).orElseThrow( () -> new ResourceNotFoundException("Can't delete due to Course not found with course id "+ course_id));
+        courseRepository.deleteById(course_id);
     }
 
     // enroll a user into a course
