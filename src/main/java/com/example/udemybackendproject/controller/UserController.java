@@ -2,6 +2,7 @@ package com.example.udemybackendproject.controller;
 
 import com.example.udemybackendproject.entities.User;
 import com.example.udemybackendproject.model.course.Course_Response;
+import com.example.udemybackendproject.model.general.General_Response;
 import com.example.udemybackendproject.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,8 +44,8 @@ public class UserController {
     }
 
     @DeleteMapping("/delete-user/{user_id}")
-    public void deleteUser(@PathVariable(value = "user_id") long userId){
-        userService.deleteUser(userId);
+    public General_Response deleteUser(@PathVariable(value = "user_id") long userId){
+        return userService.deleteUser(userId);
     }
 
     @GetMapping("/get-user-courses/{user_id}")

@@ -2,6 +2,7 @@ package com.example.udemybackendproject.services;
 
 import com.example.udemybackendproject.Interface.CourseServiceInterface;
 import com.example.udemybackendproject.entities.Course;
+import com.example.udemybackendproject.model.general.General_Response;
 import com.example.udemybackendproject.model.user_course.Enrolled_User_in_Course;
 import com.example.udemybackendproject.entities.User;
 import com.example.udemybackendproject.exceptions.ResourceNotFoundException;
@@ -16,6 +17,7 @@ import com.example.udemybackendproject.repository.CourseUserRepo;
 import com.example.udemybackendproject.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -96,9 +98,10 @@ public class CourseServiceImpl implements CourseServiceInterface {
     }
 
     @Override
-    public void deleteCourse(long course_id) {
+    public General_Response deleteCourse(long course_id) {
         courseRepository.findById(course_id).orElseThrow( () -> new ResourceNotFoundException("Can't delete due to Course not found with course id "+ course_id));
         courseRepository.deleteById(course_id);
+        return new General_Response("Success","Delete Course with course id "+ course_id, LocalDateTime.now(), "/delete-course/{course_id}");
     }
 
     // enroll a user into a course
@@ -133,7 +136,7 @@ public class CourseServiceImpl implements CourseServiceInterface {
         System.out.println(course.isEmpty());
 
         if(course.isEmpty())
-            throw new ResourceNotFoundException("Course not found");
+            throw  new ResourceNotFoundException("UnSuccess! Course not found with course id "+ course_id);
 
 //        findAllByCourseId use native query and get user details using user id
         List<User_Response> enrolled_users_list = this.courseUserRepo.findAllEnrolledUsersByCourseId(course_id);

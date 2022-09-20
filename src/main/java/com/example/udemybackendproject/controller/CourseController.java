@@ -4,6 +4,7 @@ import com.example.udemybackendproject.entities.Course;
 import com.example.udemybackendproject.model.course.Course_Response;
 import com.example.udemybackendproject.model.course.Update_Course_Request;
 import com.example.udemybackendproject.model.course.Update_Course_Response;
+import com.example.udemybackendproject.model.general.General_Response;
 import com.example.udemybackendproject.model.user.User_Response;
 import com.example.udemybackendproject.model.user_course.Add_User_in_Course_RP;
 import com.example.udemybackendproject.model.user_course.Add_User_in_Course_RT;
@@ -44,6 +45,11 @@ public class CourseController {
     @PutMapping(value = "/update-course")
     public ResponseEntity<Update_Course_Response> updateCourse(@RequestBody Update_Course_Request update_course_request){
         return new ResponseEntity<>(courseService.updateCourse(update_course_request), HttpStatus.ACCEPTED);
+    }
+
+    @DeleteMapping("/delete-course/{course_id}")
+    public General_Response deleteCourse(@PathVariable(value = "course_id") long courseId){
+        return courseService.deleteCourse(courseId);
     }
 
     @PutMapping(value = "/enroll-user")
