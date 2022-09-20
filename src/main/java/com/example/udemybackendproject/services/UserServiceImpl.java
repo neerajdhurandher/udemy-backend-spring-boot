@@ -1,18 +1,16 @@
 package com.example.udemybackendproject.services;
 
 import com.example.udemybackendproject.Interface.UserServiceInterface;
-import com.example.udemybackendproject.entities.Skill;
 import com.example.udemybackendproject.entities.User;
 import com.example.udemybackendproject.exceptions.ResourceNotFoundException;
 import com.example.udemybackendproject.model.course.Course_Response;
-import com.example.udemybackendproject.model.skill.Add_Skill_Request;
-import com.example.udemybackendproject.model.skill.Add_Skill_Response;
+import com.example.udemybackendproject.model.general.General_Response;
 import com.example.udemybackendproject.repository.UserCourseRepo;
 import com.example.udemybackendproject.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 @Service
@@ -47,9 +45,13 @@ public class UserServiceImpl implements UserServiceInterface {
     }
 
     @Override
-    public User getUserByName(String nameKeyword) {
-//        userRepo.findBy("name", getUserByName(nameKeyword));
-        return null;
+    public List<User> getUserByName(String nameKeyword) {
+        List<User> result = userRepository.findUserByNameStartingWith(nameKeyword);
+
+        if(result.isEmpty())
+            throw  new ResourceNotFoundException("UnSuccess! User not found with keyword "+ nameKeyword);
+
+        return result;
     }
 
     @Override
@@ -68,9 +70,11 @@ public class UserServiceImpl implements UserServiceInterface {
     }
 
     @Override
-    public void deleteUser(long userId) {
+    public General_Response deleteUser(long userId) {
         userRepository.findById(userId).orElseThrow( () -> new ResourceNotFoundException("Can't delete due to User not found with user id "+ userId));
         userRepository.deleteById(userId);
+
+        return new General_Response("Success","Delete User with user id "+ userId, LocalDateTime.now(), "/delete-user/{user_id}");
     }
 
     @Override

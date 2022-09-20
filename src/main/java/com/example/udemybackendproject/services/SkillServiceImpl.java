@@ -29,14 +29,14 @@ public class SkillServiceImpl implements SkillServiceInterface {
     @Override
     public Add_Skill_Response addUserSkill(Add_Skill_Request add_skill_request) {
 
-        Optional<User> user_o = userRepository.findById(add_skill_request.getUser_id());
+        Optional<User> user_o = userRepository.findById(add_skill_request.getUserId());
 
         if(user_o.isEmpty())
-            throw new ResourceNotFoundException("User not found with user id "+ add_skill_request.getUser_id());
+            throw new ResourceNotFoundException("User not found with user id "+ add_skill_request.getUserId());
 
         User user = user_o.get();
 
-        Skill skill = new Skill(add_skill_request.getSkill_title().toLowerCase(Locale.ROOT),add_skill_request.getTotalExperience(),add_skill_request.getUser_id());
+        Skill skill = new Skill(add_skill_request.getSkillTitle().toLowerCase(Locale.ROOT),add_skill_request.getTotalExperience(),add_skill_request.getUserId());
 
         this.skillRepository.save(skill);
 
@@ -44,7 +44,7 @@ public class SkillServiceImpl implements SkillServiceInterface {
 
         this.userRepository.save(user);
 
-        return new Add_Skill_Response("Success",user.getUser_id(),user.getName(),add_skill_request.getSkill_title(),add_skill_request.getTotalExperience());
+        return new Add_Skill_Response("Success",user.getUserId(),user.getName(),add_skill_request.getSkillTitle(),add_skill_request.getTotalExperience());
     }
 
     @Override

@@ -19,12 +19,12 @@ import java.util.Set;
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long course_id;
-    private String course_name;
+    private long courseId;
+    private String courseName;
 
     private String domain;
 
-    private long author_id;
+    private long authorId;
 
     private long duration;
 
@@ -33,8 +33,8 @@ public class Course {
     private int price;
 
     @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-    @JoinColumn(name = "course_id_fk", referencedColumnName = "course_id")
+    @JoinColumn(name = "courseIdFk", referencedColumnName = "courseId")
     @JsonIgnore
-    private Set<Review> review_list;
+    private Set<Review> reviewList;
 
 }

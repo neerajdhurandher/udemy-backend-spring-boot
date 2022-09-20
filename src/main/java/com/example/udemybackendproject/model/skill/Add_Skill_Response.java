@@ -7,9 +7,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class Add_Skill_Response {
     String message;
-    long user_id;
-    String user_name;
-    String skill_title;
+    long userId;
+    String userName;
+    String skillTitle;
     private int totalExperience;
 
 }

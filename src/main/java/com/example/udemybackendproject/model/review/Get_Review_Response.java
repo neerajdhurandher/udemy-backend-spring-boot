@@ -14,18 +14,18 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Get_Review_Response {
 
-    private long review_id;
-    private long course_id;
-    private long user_id;
-    private String review_description;
-    private LocalDateTime date_time;
+    private long reviewId;
+    private long courseId;
+    private long userId;
+    private String reviewDescription;
+    private LocalDateTime dateTime;
 
 
-    public Get_Review_Response(long review_id, long user_id, String review_description, LocalDateTime date_time, long course_id) {
-        this.review_id = review_id;
-        this.user_id = user_id;
-        this.review_description = review_description;
-        this.date_time = date_time;
-        this.course_id = course_id;
+    public Get_Review_Response(long reviewId, long userId, String reviewDescription, LocalDateTime dateTime, long courseId) {
+        this.reviewId = reviewId;
+        this.userId = userId;
+        this.reviewDescription = reviewDescription;
+        this.dateTime = dateTime;
+        this.courseId = courseId;
     }
 }

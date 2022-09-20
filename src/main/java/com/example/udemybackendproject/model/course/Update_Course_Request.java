@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class Update_Course_Request {
 
-    private long course_id;
-    private String course_name;
+    private long courseId;
+    private String courseName;
     private String domain;
     private long duration;
     private int price;
